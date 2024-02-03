@@ -2,10 +2,10 @@ const getPlanets = async (page = 1) => {
     try {
         const planets = await $.ajax(`http://localhost:3000/planets?page=${page}`);
 
-        $('#btnPlanets').empty();
+        $('#planets').empty();
 
         planets.forEach(planet => {
-            $('#btnPlanets').append(`
+            $('#planets').append(`
                 <tr>
                     <td>${planet.name}</td>
                     <td>${planet.rotation_period}</td>
@@ -21,25 +21,26 @@ const getPlanets = async (page = 1) => {
     }
 }
 
-$(document).ready(function () {
+$(document).ready(async function () {
     let currentPage = 1;
 
     const loadPlanets = async () => {
         try {
             await getPlanets(currentPage);
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter naves:", error);
         }
     };
 
-    $("#btnPlanets").click(async function (event) {
+    try {
+        await loadPlanets();
+    } catch (error) {
+        console.error("Erro ao obter naves:", error);
+    }
+
+    $("#btnPlanets").click(function (event) {
         event.preventDefault();
-        try {
-            await loadPlanets();
-            window.location.href = "src/pages/planets.html";
-        } catch (error) {
-            console.error("Erro ao obter planetas:", error);
-        }
+        window.location.href = "src/pages/planets.html";
     });
 
     $("#btnNextPage").click(async function (event) {
@@ -48,7 +49,7 @@ $(document).ready(function () {
             currentPage++;
             await getPlanets(currentPage);
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter naves:", error);
         }
     });
 
@@ -60,7 +61,8 @@ $(document).ready(function () {
                 await getPlanets(currentPage);
             }
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter naves:", error);
         }
     });
 });
+

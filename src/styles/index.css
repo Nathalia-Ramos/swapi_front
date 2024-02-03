@@ -11,10 +11,13 @@ body {
     
     height: 100vh; 
     margin: 0;
+    background-image: url('../assets/images/Trilogia-Sequela-Star-Wars.jpg');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover; 
 }
 
 .container {
-    /* background-color: red; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,4 +29,23 @@ body {
     display: flex;
     justify-content: center;
     background-color: red;
+}
+
+button {
+    height: 50px;
+    padding: 10px;
+    text-align: center; 
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+button:hover{
+    background-color: #fff;
+    color: #000;
 }

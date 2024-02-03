@@ -1,10 +1,11 @@
-const getStarships = async (page) => {
+const getStarships = async (page = 1) => {
     try {
-        const starships = await $.ajax(`http://localhost:3000/starships?page=${page}`);
+        const data = await $.ajax(`http://localhost:3000/starships?page=${page}`);
 
         $('#starships').empty();
 
-        starships.forEach(starship => {
+        data.forEach(starship => {
+            console.log(starship);
             $('#starships').append(`
                 <tr>
                     <td>${starship.name}</td>
@@ -35,7 +36,7 @@ $(document).ready(async function () {
     try {
         await loadStarships();
     } catch (error) {
-        console.error("Erro ao obter planetas:", error);
+        console.error("Erro ao obter naves:", error);
     }
 
     $("#btnStarships").click(function (event) {
@@ -49,7 +50,7 @@ $(document).ready(async function () {
             currentPage++;
             await getStarships(currentPage);
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter naves:", error);
         }
     });
 
@@ -61,7 +62,7 @@ $(document).ready(async function () {
                 await getStarships(currentPage);
             }
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter naves:", error);
         }
     });
 });
