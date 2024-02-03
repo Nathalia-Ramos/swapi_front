@@ -28,14 +28,14 @@ $(document).ready(async function () {
         try {
             await getCharacters(currentPage);
         } catch (error) {
-            console.error("Erro ao obter naves:", error);
+            console.error("Erro ao obter characters:", error);
         }
     };
 
     try {
         await loadCharacters();
     } catch (error) {
-        console.error("Erro ao obter planetas:", error);
+        console.error("Erro ao obter characters:", error);
     }
 
     $("#btnCharacters").click(function (event) {
@@ -49,7 +49,7 @@ $(document).ready(async function () {
             currentPage++;
             await getCharacters(currentPage);
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter characters:", error);
         }
     });
 
@@ -61,7 +61,7 @@ $(document).ready(async function () {
                 await getCharacters(currentPage);
             }
         } catch (error) {
-            console.error("Erro ao obter planetas:", error);
+            console.error("Erro ao obter characters:", error);
         }
     });
 });

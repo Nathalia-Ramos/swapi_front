@@ -28,14 +28,14 @@ $(document).ready(async function () {
         try {
             await getPlanets(currentPage);
         } catch (error) {
-            console.error("Erro ao obter naves:", error);
+            console.error("Erro ao obter planetas:", error);
         }
     };
 
     try {
         await loadPlanets();
     } catch (error) {
-        console.error("Erro ao obter naves:", error);
+        console.error("Erro ao obter planetas:", error);
     }
 
     $("#btnPlanets").click(function (event) {
@@ -49,7 +49,7 @@ $(document).ready(async function () {
             currentPage++;
             await getPlanets(currentPage);
         } catch (error) {
-            console.error("Erro ao obter naves:", error);
+            console.error("Erro ao obter planetas:", error);
         }
     });
 
@@ -61,7 +61,7 @@ $(document).ready(async function () {
                 await getPlanets(currentPage);
             }
         } catch (error) {
-            console.error("Erro ao obter naves:", error);
+            console.error("Erro ao obter planetas:", error);
         }
     });
 });
