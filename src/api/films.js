@@ -1,6 +1,6 @@
 const getFilms = async (searchTerm) => {
     try {
-        const films = await $.ajax(`http://localhost:3000/films`);
+        const films = await $.ajax(`http://localhost:4000/films`);
 
         $('#films').empty();
 
@@ -27,19 +27,18 @@ const getFilms = async (searchTerm) => {
 }
 
 $(document).ready(async function () {
-
-    const loadFilms = async (searchTerm) => {
+    let searchTerm = ''; 
+    const loadFilms = async () => {
         try {
             await getFilms(searchTerm);
         } catch (error) {
             console.error("Erro ao obter filmes:", error);
         }
     };
-    
-    $("#searchInput").on('input', async function () {
-        const userInput = $(this).val();
-        console.log("Usuário digitou:", userInput);
-        await loadFilms(userInput);
+
+    $("#searchInput").on('input', function () {
+        searchTerm = $(this).val();
+        console.log("Usuário digitou:", searchTerm);
     });
 
     $("#btnFilms").click(async function (event) {
@@ -50,11 +49,29 @@ $(document).ready(async function () {
 
     $("#btnSearch").click(async function (event) {
         event.preventDefault();
-
-        const searchTerm = $("#searchInput").val();
-        console.log(searchTerm);
-        await loadFilms(searchTerm);
+    
+        const searchTerm = $("#searchInput").val() || '';
+    
+        try {
+            $.ajax({
+                url: 'http://localhost:4000/search_film', 
+                method: 'POST', 
+                data: JSON.stringify({ search: searchTerm }), 
+                contentType: 'application/json', 
+                dataType: 'json',
+                success: function (response) {
+                    console.log('Dados enviados com sucesso:', response);
+                },
+                error: function (error) {
+                    console.error('Erro ao enviar dados:', error);
+                }
+            });
+            
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    
+        await loadFilms();
     });
-
-
+    
 });
