@@ -5,7 +5,6 @@ const getStarships = async (page = 1) => {
         $('#starships').empty();
 
         data.forEach(starship => {
-            console.log(starship);
             $('#starships').append(`
                 <tr>
                     <td>${starship.name}</td>
