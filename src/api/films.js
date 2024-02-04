@@ -1,3 +1,5 @@
+// ... (restante do seu código JavaScript) ...
+
 const getFilms = async (searchTerm) => {
     try {
         const films = await $.ajax(`http://localhost:4000/films`);
@@ -6,25 +8,37 @@ const getFilms = async (searchTerm) => {
 
         films.forEach(film => {
             if (!searchTerm || film.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                $('#films').append(`
+                const card = $(`
                     <div class="card">
                         <div class="card-img">
-                            <img src="">
+                            <img src="../assets/images/Trilogia-Sequela-Star-Wars.jpg">
                         </div>
                         <div class="card-content">
-                            <h2>${film.title}</h2>
-                            <p>${film.producer}</p>
-                            <p>${film.release_date}</p>
+                            <h2>Nome: ${film.title}</h2>
+                            <p class="producer">Produtor: ${film.producer}</p>
+                            <p class="release-date">Lançamento: ${film.release_date}</p>
+                            <p class="new-info" style="display:none;">${film.opening_crawl}</p>
+
                         </div>
                     </div>
                 `);
+
+                const newInfo = card.find('.new-info');
+                card.hover(function () {
+                    newInfo.show();
+                }, function () {
+                    newInfo.hide();
+                });
+
+                $('#films').append(card);
             }
-        })
+        });
 
     } catch (error) {
         console.log(error);
     }
 }
+
 
 $(document).ready(async function () {
     let searchTerm = ''; 
