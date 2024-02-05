@@ -1,5 +1,3 @@
-// ... (restante do seu código JavaScript) ...
-
 const getFilms = async (searchTerm) => {
     try {
         const films = await $.ajax(`http://localhost:4000/films`);
