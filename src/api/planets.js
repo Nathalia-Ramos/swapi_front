@@ -1,6 +1,6 @@
 const getPlanets = async (page = 1) => {
     try {
-        const planets = await $.ajax(`http://localhost:3000/planets?page=${page}`);
+        const planets = await $.ajax(`http://localhost:4000/planets?page=${page}`);
 
         $('#planets').empty();
 

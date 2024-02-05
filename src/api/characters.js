@@ -1,6 +1,6 @@
 const getCharacters = async (page) => {
     try {
-        const characters = await $.ajax(`http://localhost:3000/characters?page=${page}`);
+        const characters = await $.ajax(`http://localhost:4000/characters?page=${page}`);
 
         $('#characters').empty();
 

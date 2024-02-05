@@ -1,6 +1,6 @@
 const getStarships = async (page = 1) => {
     try {
-        const data = await $.ajax(`http://localhost:3000/starships?page=${page}`);
+        const data = await $.ajax(`http://localhost:4000/starships?page=${page}`);
 
         $('#starships').empty();
 

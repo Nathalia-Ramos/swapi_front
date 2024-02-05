@@ -52,7 +52,6 @@ $(document).ready(async function () {
 
     $("#searchInput").on('input', function () {
         searchTerm = $(this).val();
-        console.log("Usuário digitou:", searchTerm);
     });
 
     $("#btnFilms").click(async function (event) {
